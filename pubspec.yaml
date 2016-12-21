@@ -4,6 +4,10 @@ description: A web app to check currency exchange rates.
 environment:
   sdk: '>=1.0.0 <2.0.0'
 
+dependencies:
+  coverage: "^0.7.0"
+  dart_codecov_generator: "^0.4.0"
+
 dev_dependencies:
   browser: '>=0.10.0 <0.11.0'
   dart_to_js_script_rewriter: '^1.0.1'
