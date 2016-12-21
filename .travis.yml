@@ -1,7 +1,4 @@
 language: dart
 dart:
   - "1.21.0"
-script:
-  - pub run test
-  - pub run dart_codecov_generator --no-html --verbose test/sample_test.dart
-  - bash <(curl -s https://codecov.io/bash)
+script: ./travis.sh
