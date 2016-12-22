@@ -1,4 +1,4 @@
 language: dart
 dart:
   - "1.21.0"
-script: ./travis.sh
+script: ./tool/travis.sh
