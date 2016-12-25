@@ -3,14 +3,17 @@ import 'dart:html';
 
 class CurrencyConverterView implements ConverterView {
 
+  final ConverterUserActions _presenter;
+
   Element _content;
   Element _error;
   Element _loading;
 
-  CurrencyConverterView() {
+  CurrencyConverterView(this._presenter) {
     _content = querySelector("#content");
     _error = querySelector("#error");
     _loading = querySelector("#loading");
+    this.loadData();
   }
 
   @override
@@ -38,5 +41,10 @@ class CurrencyConverterView implements ConverterView {
     _content.style.display = 'none';
     _error.style.display = 'none';
     _loading.style.display = 'block';
+  }
+
+  @override
+  void loadData() {
+    this._presenter.loadCurrencyData();
   }
 }
