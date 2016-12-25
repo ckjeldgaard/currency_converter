@@ -2,3 +2,4 @@ language: dart
 dart:
   - "1.21.0"
 script: ./tool/travis.sh
+with_content_shell: true

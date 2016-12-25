@@ -21,3 +21,11 @@ section.section--center {
   max-width: 56px;
   margin:15px auto;
 }
+
+#content, #loading, #error {
+  display:none;
+}
+
+#loading, #error {
+  text-align:center;
+}

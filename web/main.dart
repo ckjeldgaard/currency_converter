@@ -1,6 +1,6 @@
-import 'dart:html';
+import 'app/converter/converter_contract.dart';
+import 'app/converter/currency_converter_view.dart';
 
 void main() {
-  InputElement input = querySelector("#amount-from");
-  input.value = "123";
+  ConverterView view = new CurrencyConverterView();
 }
