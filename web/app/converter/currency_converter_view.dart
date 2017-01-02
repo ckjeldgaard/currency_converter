@@ -1,25 +1,26 @@
+import '../data/fixer_repository.dart';
+import '../model/currency.dart';
 import 'converter_contract.dart';
+import 'currency_converter_presenter.dart';
 import 'dart:html';
 
 class CurrencyConverterView implements ConverterView {
 
-  final ConverterUserActions _presenter;
+  ConverterUserActions _presenter;
 
   Element _content;
   Element _error;
   Element _loading;
 
-  CurrencyConverterView(this._presenter) {
-    _content = querySelector("#content");
-    _error = querySelector("#error");
-    _loading = querySelector("#loading");
-    this.loadData();
-  }
+  UListElement _currencyFromList;
 
-  @override
-  void swap() {
-    //InputElement input = querySelector("#amount-from");
-    //input.value = "123456";
+  CurrencyConverterView() {
+    _presenter = new CurrencyConverterPresenter(new FixerRepository(), this);
+    this._content = querySelector("#content");
+    this._error = querySelector("#error");
+    this._loading = querySelector("#loading");
+    this._currencyFromList = querySelector("#currency-from-list");
+    this.loadData();
   }
 
   @override
@@ -46,5 +47,23 @@ class CurrencyConverterView implements ConverterView {
   @override
   void loadData() {
     this._presenter.loadCurrencyData();
+  }
+
+  @override
+  void setCurrencies(List<Currency> currencies) {
+    currencies.forEach((currency) => _addCurrencyListElement(currency));
+  }
+
+  void _addCurrencyListElement(Currency currency) {
+    LIElement listElement = new LIElement();
+    listElement.text = currency.code;
+    listElement.attributes['class'] = 'mdl-menu__item';
+    listElement.attributes['data-val'] = currency.code;
+    _currencyFromList.children.add(listElement);
+  }
+
+  @override
+  void swap() {
+    // TODO: implement swap
   }
 }

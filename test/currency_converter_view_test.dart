@@ -5,7 +5,7 @@ import "package:test/test.dart";
 import '../web/app/converter/currency_converter_view.dart';
 
 void main() {
-  CurrencyConverterView view = new CurrencyConverterView(null);
+  CurrencyConverterView view = new CurrencyConverterView();
 
   test("Test show content", () {
     view.showContent();
