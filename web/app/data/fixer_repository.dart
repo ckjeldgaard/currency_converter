@@ -12,13 +12,13 @@ class FixerRepository implements Repository {
   Future getCurrencyData() async {
     try {
       String dataResponse = await HttpRequest.getString(_URL);
-      return parseJsonData(dataResponse);
+      return _parseJsonData(dataResponse);
     } catch (e) {
       throw e;
     }
   }
 
-  List<Currency> parseJsonData(String dataResponse) {
+  List<Currency> _parseJsonData(String dataResponse) {
     List<Currency> currencies = new List();
     Map json = JSON.decode(dataResponse);
     json["rates"].forEach((code, rate) => currencies.add(new Currency(code, rate)));
