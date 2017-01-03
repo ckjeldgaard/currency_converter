@@ -12,7 +12,6 @@ class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrencies
   @override
   void loadCurrencyData() {
     this._view.showLoading();
-
     this._repository.getCurrencyData()
       .then(onCurrenciesLoaded)
       .catchError((e) => onFailure(e));
@@ -20,6 +19,8 @@ class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrencies
 
   @override
   void onCurrenciesLoaded(List<Currency> currencies) {
+    print("debug onCurrenciesLoaded");
+    print(this._view);
     this._view.setCurrencies(currencies);
     this._view.showContent();
   }

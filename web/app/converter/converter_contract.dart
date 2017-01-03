@@ -1,5 +1,4 @@
 import '../model/currency.dart';
-import 'dart:async';
 
 abstract class ConverterView {
   void showLoading();
