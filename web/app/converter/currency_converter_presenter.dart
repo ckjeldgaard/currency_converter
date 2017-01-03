@@ -19,8 +19,6 @@ class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrencies
 
   @override
   void onCurrenciesLoaded(List<Currency> currencies) {
-    print("debug onCurrenciesLoaded");
-    print(this._view);
     this._view.setCurrencies(currencies);
     this._view.showContent();
   }
