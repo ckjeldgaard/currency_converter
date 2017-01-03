@@ -10,9 +10,10 @@ class ConverterViewMock extends Mock implements ConverterView {}
 class RepositoryMock extends Mock implements Repository {}
 
 void main() {
+  ConverterView viewMock = new ConverterViewMock();
+  Repository repositoryMock = new RepositoryMock();
+
   test("Test load currency data", () {
-    ConverterView viewMock = new ConverterViewMock();
-    Repository repositoryMock = new RepositoryMock();
 
     List<Currency> currencies = new List();
     currencies.add(new Currency("x", 1.1));
@@ -31,5 +32,16 @@ void main() {
       verify(viewMock.showContent()).called(1);
       verify(viewMock.setCurrencies(currencies));
     }));
+  });
+
+  test("Test currency conversion", () {
+    ConverterUserActions presenter = new CurrencyConverterPresenter(repositoryMock, viewMock);
+    Currency currencyFrom = new Currency("EUR", 1.0);
+    Currency currencyTo = new Currency("USD", 1.0465);
+
+    expect(
+        presenter.convert(currencyFrom, currencyTo, 100.0),
+        equals(104.65)
+    );
   });
 }

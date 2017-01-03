@@ -15,6 +15,9 @@ class CurrencyConverterView implements ConverterView {
   UListElement _currencyFromList;
   UListElement _currencyToList;
 
+  InputElement amountFrom;
+  InputElement amountTo;
+
   CurrencyConverterView() {
     _presenter = new CurrencyConverterPresenter(new FixerRepository(), this);
     this._content = querySelector("#content");
@@ -22,6 +25,8 @@ class CurrencyConverterView implements ConverterView {
     this._loading = querySelector("#loading");
     this._currencyFromList = querySelector("#currency-from-list");
     this._currencyToList = querySelector("#currency-to-list");
+    this.amountFrom = querySelector("#amount-from");
+    this.amountTo = querySelector("#amount-from");
     this.loadData();
   }
 
@@ -48,7 +53,13 @@ class CurrencyConverterView implements ConverterView {
 
   @override
   void loadData() {
+    this.amountFrom.onKeyUp.listen((event) => doConversion(event));
+
     this._presenter.loadCurrencyData();
+  }
+
+  void doConversion(KeyboardEvent event) {
+    print(amountFrom.value);
   }
 
   @override

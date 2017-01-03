@@ -11,4 +11,5 @@ abstract class ConverterView {
 
 abstract class ConverterUserActions {
   void loadCurrencyData();
+  double convert(Currency currencyFrom, Currency currencyTo, double amount);
 }

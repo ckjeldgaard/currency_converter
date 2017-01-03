@@ -28,4 +28,9 @@ class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrencies
     this._view.showError(ex);
   }
 
+  @override
+  double convert(Currency currencyFrom, Currency currencyTo, double amount) {
+    return currencyTo.rate / currencyFrom.rate * amount;
+  }
+
 }

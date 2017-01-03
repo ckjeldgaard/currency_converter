@@ -26,5 +26,4 @@ class FixerRepository implements Repository {
     currencies.sort((a, b) => a.compareTo(b));
     return currencies;
   }
-
 }
