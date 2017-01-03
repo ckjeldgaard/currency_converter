@@ -20,8 +20,10 @@ class FixerRepository implements Repository {
 
   List<Currency> _parseJsonData(String dataResponse) {
     List<Currency> currencies = new List();
+    currencies.add(new Currency("EUR", 1.0));
     Map json = JSON.decode(dataResponse);
     json["rates"].forEach((code, rate) => currencies.add(new Currency(code, rate)));
+    currencies.sort((a, b) => a.compareTo(b));
     return currencies;
   }
 

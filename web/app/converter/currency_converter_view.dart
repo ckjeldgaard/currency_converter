@@ -13,6 +13,7 @@ class CurrencyConverterView implements ConverterView {
   Element _loading;
 
   UListElement _currencyFromList;
+  UListElement _currencyToList;
 
   CurrencyConverterView() {
     _presenter = new CurrencyConverterPresenter(new FixerRepository(), this);
@@ -20,6 +21,7 @@ class CurrencyConverterView implements ConverterView {
     this._error = querySelector("#error");
     this._loading = querySelector("#loading");
     this._currencyFromList = querySelector("#currency-from-list");
+    this._currencyToList = querySelector("#currency-to-list");
     this.loadData();
   }
 
@@ -60,6 +62,7 @@ class CurrencyConverterView implements ConverterView {
     listElement.attributes['class'] = 'mdl-menu__item';
     listElement.attributes['data-val'] = currency.code;
     _currencyFromList.children.add(listElement);
+    _currencyToList.children.add(listElement);
   }
 
   @override

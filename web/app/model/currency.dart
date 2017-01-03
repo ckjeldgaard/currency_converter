@@ -7,4 +7,8 @@ class Currency {
   String get code => _code;
 
   double get rate => _rate;
+
+  int compareTo(Currency b) {
+    return this._code.compareTo(b._code);
+  }
 }
