@@ -1,7 +1,7 @@
-import '../web/app/converter/converter_contract.dart';
-import '../web/app/converter/currency_converter_presenter.dart';
-import '../web/app/data/repository.dart';
-import '../web/app/model/currency.dart';
+import '../../web/app/converter/converter_contract.dart';
+import '../../web/app/converter/currency_converter_presenter.dart';
+import '../../web/app/data/repository.dart';
+import '../../web/app/model/currency.dart';
 import 'dart:async';
 import "package:test/test.dart";
 import 'package:mockito/mockito.dart';

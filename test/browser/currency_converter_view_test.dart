@@ -2,7 +2,7 @@
 
 import 'dart:html';
 import "package:test/test.dart";
-import '../web/app/converter/currency_converter_view.dart';
+import '../../web/app/converter/currency_converter_view.dart';
 
 void main() {
   CurrencyConverterView view = new CurrencyConverterView();
