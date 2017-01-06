@@ -71,8 +71,6 @@ class CurrencyConverterView implements ConverterView {
   void _addCurrencyListElement(SelectElement list, Currency currency) {
     OptionElement option = new OptionElement();
     option.text = currency.code;
-
-    print(_currencyFromList);
     list.children.add(option);
   }
 
