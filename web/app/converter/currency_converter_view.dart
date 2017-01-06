@@ -12,8 +12,8 @@ class CurrencyConverterView implements ConverterView {
   Element _error;
   Element _loading;
 
-  UListElement _currencyFromList;
-  UListElement _currencyToList;
+  SelectElement _currencyFromList;
+  SelectElement _currencyToList;
 
   InputElement amountFrom;
   InputElement amountTo;
@@ -23,8 +23,8 @@ class CurrencyConverterView implements ConverterView {
     this._content = querySelector("#content");
     this._error = querySelector("#error");
     this._loading = querySelector("#loading");
-    this._currencyFromList = querySelector("#currency-from-list");
-    this._currencyToList = querySelector("#currency-to-list");
+    this._currencyFromList = querySelector("#currency-from");
+    this._currencyToList = querySelector("#currency-to");
     this.amountFrom = querySelector("#amount-from");
     this.amountTo = querySelector("#amount-from");
     this.loadData();
@@ -64,16 +64,16 @@ class CurrencyConverterView implements ConverterView {
 
   @override
   void setCurrencies(List<Currency> currencies) {
-    currencies.forEach((currency) => _addCurrencyListElement(currency));
+    currencies.forEach((currency) => _addCurrencyListElement(_currencyFromList, currency));
+    currencies.forEach((currency) => _addCurrencyListElement(_currencyToList, currency));
   }
 
-  void _addCurrencyListElement(Currency currency) {
-    LIElement listElement = new LIElement();
-    listElement.text = currency.code;
-    listElement.attributes['class'] = 'mdl-menu__item';
-    listElement.attributes['data-val'] = currency.code;
-    _currencyFromList.children.add(listElement);
-    _currencyToList.children.add(listElement);
+  void _addCurrencyListElement(SelectElement list, Currency currency) {
+    OptionElement option = new OptionElement();
+    option.text = currency.code;
+
+    print(_currencyFromList);
+    list.children.add(option);
   }
 
   @override

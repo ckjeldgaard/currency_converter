@@ -1,104 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
+    <title>Currency converter</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency converter</title>
-    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.teal-orange.min.css"/>
-    <link rel="stylesheet" href="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-
-    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-    <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/mui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+    <script src="js/mui.min.js"></script>
     <script defer src="main.dart" type="application/dart"></script>
     <script defer src="packages/browser/dart.js"></script>
 </head>
 <body>
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-            <span class="mdl-layout-title">Currency converter</span>
-        </div>
-    </header>
-    <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Currency converter</span>
-        <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Currency converter</a>
-            <a class="mdl-navigation__link" href="">Historical exchange rates</a>
-            <a class="mdl-navigation__link" href="">Settings</a>
-        </nav>
+<nav id="sidedrawer" class="mui--no-user-select">
+    <div id="sidedrawer-brand" class="mui--appbar-line-height">
+        <span class="mui--text-title">Currency converter</span>
     </div>
-    <main class="mdl-layout__content">
-        <div class="page-content">
-            <div class="mdl-layout__tab-panel is-active">
-                <section class="section--center mdl-grid mdl-grid--no-spacing">
-                    <div class="mdl-cell mdl-cell--12-col">
-
-                        <h3>Currency converter</h3>
-
-                        <div id="loading">
-                            <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
-                        </div>
-
-                        <div id="error">
-                            <p id="error-text">An error occurred.</p>
-                        </div>
-
-                        <div id="content">
-                        <div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
-                                <input class="mdl-textfield__input" type="text" id="currency-from" value="EUR" readonly
-                                       tabIndex="-1">
-                                <label for="currency-from">
-                                    <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                                </label>
-                                <label for="currency-from" class="mdl-textfield__label">Currency I have</label>
-                                <ul for="currency-from" class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="currency-from-list">
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="number" id="amount-from" name="amount-from">
-                                <label class="mdl-textfield__label" for="amount-from">Amount</label>
-                            </div>
-                        </div>
-
-                        <div class="swap-container">
-                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-                                <i class="material-icons">swap_vert</i>
-                            </button>
-                        </div>
-
-                        <div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
-                                <input class="mdl-textfield__input" type="text" id="currency-to" value="USD" readonly
-                                       tabIndex="-1">
-                                <label for="currency-to">
-                                    <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                                </label>
-                                <label for="currency-to" class="mdl-textfield__label">Currency I want</label>
-                                <ul for="currency-to" class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="currency-to-list">
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="number" id="amount-to" name="amount-to">
-                                <label class="mdl-textfield__label" for="amount-to">Amount</label>
-                            </div>
-                        </div>
-
+    <div class="mui-divider"></div>
+    <ul>
+        <li><strong>Currency converter</strong></li>
+        <li><strong>Historical exchange rates</strong></li>
+        <li><strong>Settings</strong></li>
+    </ul>
+</nav>
+<header id="header">
+    <div class="mui-appbar mui--appbar-line-height">
+        <div class="mui-container-fluid">
+            <a class="sidedrawer-toggle mui--visible-xs-inline-block mui--visible-sm-inline-block js-show-sidedrawer">☰</a>
+            <a class="sidedrawer-toggle mui--hidden-xs mui--hidden-sm js-hide-sidedrawer">☰</a>
+            <span class="mui--text-title mui--visible-xs-inline-block">Currency converter</span>
+        </div>
+    </div>
+</header>
+<div id="content-wrapper">
+    <div class="mui--appbar-height"></div>
+    <div class="mui-container content">
+        <div class="mui-panel">
+            <h1>Currency converter</h1>
+            <div id="content">
+                <form>
+                    <div class="mui-select">
+                        <select id="currency-from"></select>
+                        <label for="currency-from">Currency I have</label>
                     </div>
+
+                    <div class="mui-textfield mui-textfield--float-label">
+                        <input type="text" id="amount-from"/>
+                        <label for="amount-from">Amount</label>
                     </div>
-                </section>
+
+                    <div class="mui--text-center">
+                        <button class="mui-btn mui-btn--fab mui-btn--accent">⬍</button>
+                    </div>
+
+                    <div class="mui-select">
+                        <select id="currency-to">
+                        </select>
+                        <label for="currency-to">Currency I want</label>
+                    </div>
+
+                    <div class="mui-textfield mui-textfield--float-label">
+                        <input type="text" id="amount-to"/>
+                        <label for="amount-to">Amount</label>
+                    </div>
+
+                </form>
+            </div>
+
+            <div id="loading">
+                <div class="spinner"></div>
+            </div>
+
+            <div id="error">
+                <p id="error-text" class="mui--text-center">An error occurred.</p>
             </div>
 
         </div>
-    </main>
+    </div>
 </div>
 </body>
 </html>
