@@ -1,4 +1,4 @@
-@TestOn("content-shell")
+@TestOn("firefox")
 
 import 'dart:html';
 import "package:test/test.dart";
