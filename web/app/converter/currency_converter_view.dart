@@ -26,7 +26,7 @@ class CurrencyConverterView implements ConverterView {
     this._currencyFromList = querySelector("#currency-from");
     this._currencyToList = querySelector("#currency-to");
     this.amountFrom = querySelector("#amount-from");
-    this.amountTo = querySelector("#amount-from");
+    this.amountTo = querySelector("#amount-to");
     this.loadData();
   }
 
