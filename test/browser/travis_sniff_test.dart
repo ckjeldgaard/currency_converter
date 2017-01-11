@@ -1,4 +1,4 @@
-//@TestOn("content-shell")
+@TestOn("content-shell")
 
 import 'package:test/test.dart';
 
