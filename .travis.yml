@@ -1,5 +1,8 @@
 language: dart
 dart:
-  - "1.15.0"
-script: ./tool/travis.sh
+  - stable
 with_content_shell: true
+script:
+  - pub get
+  - set -e
+  - pub run dart_dev test
