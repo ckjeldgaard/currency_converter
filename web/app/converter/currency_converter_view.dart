@@ -18,7 +18,7 @@ class CurrencyConverterView implements ConverterView {
   InputElement amountTo;
 
   CurrencyConverterView() {
-    _presenter = new CurrencyConverterPresenter(null, this);
+    //_presenter = new CurrencyConverterPresenter(null, this);
     this._content = querySelector("#content");
     this._error = querySelector("#error");
     this._loading = querySelector("#loading");
