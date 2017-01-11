@@ -6,7 +6,7 @@ main(List<String> args) async {
 
   config.coverage.reportOn = ['web/'];
   config.test
-    ..platforms = ['vm', 'firefox'];
+    ..platforms = ['vm', 'content-shell'];
 
   await dev(args);
 }
