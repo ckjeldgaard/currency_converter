@@ -5,6 +5,9 @@ pub get --packages-dir
 # Fast fail the script on failures.
 set -e
 
+echo "** Run a trivial travis-only test to see if the current platform works"
+pub run test -p content-shell tool/travis_sniff_test.dart
+
 # Run the tests.
 pub run test -p vm -p content-shell
 
