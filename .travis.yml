@@ -2,6 +2,9 @@ language: dart
 sudo: false
 dart:
   - stable
+cache:
+  directories:
+    - $HOME/.pub-cache
 with_content_shell: true
 script:
   - pub get
