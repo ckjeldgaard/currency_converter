@@ -1,3 +1,5 @@
+@TestOn("vm")
+
 import '../../web/app/model/currency.dart';
 import '../../web/app/model/default_currency.dart';
 import 'package:test/test.dart';

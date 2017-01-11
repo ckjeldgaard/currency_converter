@@ -6,8 +6,7 @@ pub get --packages-dir
 set -e
 
 # Run the tests.
-pub run test test/unit/
-# pub run test -p content-shell test/browser/
+pub run test -p vm -p content-shell
 
 # If the COVERALLS_TOKEN token is set on travis
 # Install dart_coveralls

@@ -1,3 +1,5 @@
+@TestOn("vm")
+
 import '../../web/app/converter/converter_contract.dart';
 import '../../web/app/converter/currency_converter_presenter.dart';
 import '../../web/app/data/repository.dart';
