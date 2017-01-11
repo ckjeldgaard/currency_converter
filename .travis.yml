@@ -5,5 +5,5 @@ with_content_shell: true
 script:
   - pub get
   - set -e
-  - pub run test -p content-shell tool/travis_sniff_test.dart
+  - pub run test -p content-shell test/browser/travis_sniff_test.dart
   - pub run dart_dev test
