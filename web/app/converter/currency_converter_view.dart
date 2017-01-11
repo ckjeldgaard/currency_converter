@@ -1,6 +1,6 @@
 import '../model/currency.dart';
 import 'converter_contract.dart';
-import 'currency_converter_presenter.dart';
+//import 'currency_converter_presenter.dart';
 import 'dart:html';
 
 class CurrencyConverterView implements ConverterView {
