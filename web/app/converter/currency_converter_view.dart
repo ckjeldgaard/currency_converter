@@ -1,6 +1,7 @@
+import '../data/fixer_repository.dart';
 import '../model/currency.dart';
 import 'converter_contract.dart';
-//import 'currency_converter_presenter.dart';
+import 'currency_converter_presenter.dart';
 import 'dart:html';
 
 class CurrencyConverterView implements ConverterView {
@@ -18,7 +19,7 @@ class CurrencyConverterView implements ConverterView {
   InputElement amountTo;
 
   CurrencyConverterView() {
-    //_presenter = new CurrencyConverterPresenter(null, this);
+    _presenter = new CurrencyConverterPresenter(new FixerRepository(), this);
     this._content = querySelector("#content");
     this._error = querySelector("#error");
     this._loading = querySelector("#loading");
@@ -26,7 +27,7 @@ class CurrencyConverterView implements ConverterView {
     this._currencyToList = querySelector("#currency-to");
     this.amountFrom = querySelector("#amount-from");
     this.amountTo = querySelector("#amount-to");
-    //this.loadData();
+    this.loadData();
   }
 
   @override
