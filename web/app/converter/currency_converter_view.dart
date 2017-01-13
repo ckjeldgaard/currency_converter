@@ -76,7 +76,7 @@ class CurrencyConverterView implements ConverterView {
   }
 
   @override
-  void setFromCurrency(Currency currency) {
+  void setSelectedFromCurrency(Currency currency) {
     for (OptionElement option in _currencyFromList.options) {
       if (currency.code == option.value) {
         option.selected = true;
@@ -85,7 +85,7 @@ class CurrencyConverterView implements ConverterView {
   }
 
   @override
-  void setToCurrency(Currency currency) {
+  void setSelectedToCurrency(Currency currency) {
     for (OptionElement option in _currencyToList.options) {
       if (currency.code == option.value) {
         option.selected = true;

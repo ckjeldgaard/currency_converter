@@ -23,7 +23,7 @@ class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrencies
   @override
   void onCurrenciesLoaded(List<Currency> currencies) {
     this._view.setCurrencies(currencies);
-    this._view.setFromCurrency(_getCurrency(currencies, _DEFAULT_FROM_CURRENCY));
+    this._view.setSelectedFromCurrency(_getCurrency(currencies, _DEFAULT_FROM_CURRENCY));
     this._view.setToCurrency(_getCurrency(currencies, _DEFAULT_TO_CURRENCY));
     this._view.showContent();
   }
