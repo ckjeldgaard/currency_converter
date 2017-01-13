@@ -1,7 +1,6 @@
 import '../data/repository.dart';
 import '../model/currency.dart';
 import 'converter_contract.dart';
-import 'dart:math';
 
 class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrenciesCallback {
 
