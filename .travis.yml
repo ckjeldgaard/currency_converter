@@ -13,5 +13,4 @@ before_script:
 script:
   - pub get
   - set -e
-  - pub run test -p content-shell test/browser/travis_sniff_test.dart
   - pub run dart_dev test
