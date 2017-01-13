@@ -10,9 +10,28 @@ class OverlayInvokerMock extends Mock implements OverlayInvoker {}
 
 void main() {
 
+  OverlayInvokerMock overlayInvokerMock = new OverlayInvokerMock();
+
+
+  test("Hide side drawer by toggling body class", () {
+    SideDrawer sideDrawer = new SideDrawer(overlayInvokerMock);
+    querySelector('body').classes.clear();
+
+    sideDrawer.hideDrawer.click();
+    expect(
+        querySelector('body').classes.toString(),
+        contains("hide-sidedrawer")
+    );
+
+    sideDrawer.hideDrawer.click();
+    expect(
+        querySelector('body').classes.toString(),
+        isEmpty
+    );
+  });
+
   test("Show side drawer", () {
     // Arrange
-    OverlayInvokerMock overlayInvokerMock = new OverlayInvokerMock();
     Element overlayEl = querySelector("#overlay");
     when(overlayInvokerMock.invokeOverlay("on", any)).thenReturn(overlayEl);
 
