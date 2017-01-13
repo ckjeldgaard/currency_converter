@@ -13,4 +13,5 @@ abstract class ConverterView {
 
 abstract class ConverterUserActions {
   void loadCurrencyData();
+  String convert(String amount, String codeFrom, String codeTo);
 }

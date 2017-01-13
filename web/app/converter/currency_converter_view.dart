@@ -53,13 +53,17 @@ class CurrencyConverterView implements ConverterView {
 
   @override
   void loadData() {
-    this.amountFrom.onKeyUp.listen((event) => doConversion(event));
+    this.amountFrom.onInput.listen((event) => _doConversion(event, amountFrom, amountTo, _currencyFromList, _currencyToList));
+    this.amountTo.onInput.listen((event) => _doConversion(event, amountTo, amountFrom, _currencyToList, _currencyFromList));
+
+    this._currencyFromList.onChange.listen((event) => _doConversion(event, amountTo, amountFrom, _currencyToList, _currencyFromList));
+    this._currencyToList.onChange.listen((event) => _doConversion(event, amountFrom, amountTo, _currencyFromList, _currencyToList));
 
     this._presenter.loadCurrencyData();
   }
 
-  void doConversion(KeyboardEvent event) {
-    print(amountFrom.value);
+  void _doConversion(KeyboardEvent event, InputElement thisAmount, InputElement otherAmount, SelectElement thisList, SelectElement otherList) {
+    otherAmount.value = this._presenter.convert(thisAmount.value, thisList.selectedOptions[0].value, otherList.selectedOptions[0].value);
   }
 
   @override
