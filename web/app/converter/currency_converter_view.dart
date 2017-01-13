@@ -71,11 +71,31 @@ class CurrencyConverterView implements ConverterView {
   void _addCurrencyListElement(SelectElement list, Currency currency) {
     OptionElement option = new OptionElement();
     option.text = currency.code;
+    option.value = currency.code;
     list.children.add(option);
+  }
+
+  @override
+  void setFromCurrency(Currency currency) {
+    for (OptionElement option in _currencyFromList.options) {
+      if (currency.code == option.value) {
+        option.selected = true;
+      }
+    }
+  }
+
+  @override
+  void setToCurrency(Currency currency) {
+    for (OptionElement option in _currencyToList.options) {
+      if (currency.code == option.value) {
+        option.selected = true;
+      }
+    }
   }
 
   @override
   void swap() {
     // TODO: implement swap
   }
+
 }

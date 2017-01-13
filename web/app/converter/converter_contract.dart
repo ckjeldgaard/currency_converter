@@ -7,6 +7,8 @@ abstract class ConverterView {
   void loadData();
   void setCurrencies(List<Currency> currencies);
   void swap();
+  void setFromCurrency(Currency currency);
+  void setToCurrency(Currency currency);
 }
 
 abstract class ConverterUserActions {
