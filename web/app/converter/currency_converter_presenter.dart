@@ -10,7 +10,7 @@ class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrencies
 
   final Repository _repository;
   final ConverterView _view;
-  List<Currency> _currencies;
+  List<Currency> loadedCurrencies = new List<Currency>();
 
   CurrencyConverterPresenter(this._repository, this._view);
 
@@ -25,23 +25,29 @@ class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrencies
   @override
   String convert(String amount, String codeFrom, String codeTo) {
     String convertedAmount = "";
-    if (amount.isNotEmpty && _currencies.isNotEmpty && double.parse(amount) is double) {
-      convertedAmount = this._getCurrency(codeFrom).convertAmountTo(double.parse(amount), this._getCurrency(codeTo)).toStringAsFixed(2);
+    double amountToConvert;
+    try {
+      if (amount.isNotEmpty && loadedCurrencies.isNotEmpty) {
+        amountToConvert = double.parse(amount);
+        convertedAmount = this._getCurrency(codeFrom).convertAmountTo(amountToConvert, this._getCurrency(codeTo)).toStringAsFixed(2);
+      }
+    } catch (e) {
+      throw new FormatException("Could not parse amount to convert", e);
     }
     return convertedAmount;
   }
 
   @override
   void onCurrenciesLoaded(List<Currency> currencies) {
-    this._currencies = currencies;
-    this._view.setCurrencies(_currencies);
+    this.loadedCurrencies = currencies;
+    this._view.setCurrencies(loadedCurrencies);
     this._view.setSelectedFromCurrency(_getCurrency(_DEFAULT_FROM_CURRENCY));
     this._view.setSelectedToCurrency(_getCurrency(_DEFAULT_TO_CURRENCY));
     this._view.showContent();
   }
 
   Currency _getCurrency(String code) {
-    for (Currency c in _currencies) {
+    for (Currency c in loadedCurrencies) {
       if (c.code == code) {
         return c;
       }
