@@ -1,6 +1,6 @@
-import '../../web/app/converter/converter_contract.dart';
 @TestOn("content-shell")
 
+import '../../web/app/converter/converter_contract.dart';
 import '../../web/app/model/currency.dart';
 import '../../web/app/model/default_currency.dart';
 import 'dart:html';
