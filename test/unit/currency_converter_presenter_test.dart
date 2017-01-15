@@ -32,7 +32,8 @@ void main() {
 
     when(repositoryMock.getCurrencyData()).thenReturn(future);
 
-    ConverterUserActions presenter = new CurrencyConverterPresenter(repositoryMock, viewMock);
+    ConverterUserActions presenter = new CurrencyConverterPresenter(repositoryMock);
+    presenter.view = viewMock;
     presenter.loadCurrencyData();
 
     verify(viewMock.showLoading());
@@ -47,7 +48,8 @@ void main() {
   });
 
   test("Test presenter conversion", () {
-    CurrencyConverterPresenter presenter = new CurrencyConverterPresenter(repositoryMock, viewMock);
+    CurrencyConverterPresenter presenter = new CurrencyConverterPresenter(repositoryMock);
+    presenter.view = viewMock;
     presenter.loadedCurrencies = currencies;
 
     expect(
@@ -57,7 +59,8 @@ void main() {
   });
 
   test("Test presenter conversion without loaded currencies", () {
-    CurrencyConverterPresenter presenter = new CurrencyConverterPresenter(repositoryMock, viewMock);
+    CurrencyConverterPresenter presenter = new CurrencyConverterPresenter(repositoryMock);
+    presenter.view = viewMock;
     expect(
         presenter.convert("100", currencyFrom.code, currencyTo.code),
         isEmpty
@@ -74,7 +77,8 @@ void main() {
   }); */
 
   test("Test presenter conversion with empty amount", () {
-    CurrencyConverterPresenter presenter = new CurrencyConverterPresenter(repositoryMock, viewMock);
+    CurrencyConverterPresenter presenter = new CurrencyConverterPresenter(repositoryMock);
+    presenter.view = viewMock;
     presenter.loadedCurrencies = currencies;
     expect(
         presenter.convert("", currencyFrom.code, currencyTo.code),

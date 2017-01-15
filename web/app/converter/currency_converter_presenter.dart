@@ -8,10 +8,15 @@ class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrencies
   final String _DEFAULT_TO_CURRENCY = "USD";
 
   final Repository _repository;
-  final ConverterView _view;
+  ConverterView _view;
   List<Currency> loadedCurrencies = new List<Currency>();
 
-  CurrencyConverterPresenter(this._repository, this._view);
+  CurrencyConverterPresenter(this._repository);
+
+  @override
+  set view(ConverterView view) {
+    this._view = view;
+  }
 
   @override
   void loadCurrencyData() {

@@ -1,7 +1,5 @@
-import '../data/fixer_repository.dart';
 import '../model/currency.dart';
 import 'converter_contract.dart';
-import 'currency_converter_presenter.dart';
 import 'dart:html';
 
 class CurrencyConverterView implements ConverterView {
@@ -18,8 +16,8 @@ class CurrencyConverterView implements ConverterView {
   InputElement amountFrom;
   InputElement amountTo;
 
-  CurrencyConverterView() {
-    _presenter = new CurrencyConverterPresenter(new FixerRepository(), this);
+  CurrencyConverterView(this._presenter) {
+    this._presenter.view = this;
     this._content = querySelector("#content");
     this._error = querySelector("#error");
     this._loading = querySelector("#loading");
@@ -71,6 +69,8 @@ class CurrencyConverterView implements ConverterView {
 
   @override
   void setCurrencies(List<Currency> currencies) {
+    _currencyFromList.children.clear();
+    _currencyToList.children.clear();
     currencies.forEach((currency) => _addCurrencyListElement(_currencyFromList, currency));
     currencies.forEach((currency) => _addCurrencyListElement(_currencyToList, currency));
   }
