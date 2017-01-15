@@ -1,7 +1,7 @@
-import '../../web/app/model/currency.dart';
-import '../../web/app/model/default_currency.dart';
 @TestOn("content-shell")
 
+import '../../web/app/model/currency.dart';
+import '../../web/app/model/default_currency.dart';
 import 'dart:html';
 import "package:test/test.dart";
 import '../../web/app/converter/currency_converter_view.dart';
