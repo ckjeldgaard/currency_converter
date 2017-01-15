@@ -30,6 +30,9 @@ class CurrencyConverterView implements ConverterView {
     this.loadData();
   }
 
+  SelectElement get currencyFromList => _currencyFromList;
+  SelectElement get currencyToList => _currencyToList;
+
   @override
   void showContent() {
     _content.style.display = 'block';
