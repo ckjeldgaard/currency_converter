@@ -5,7 +5,7 @@ import 'dart:async';
 import 'default_currency.dart';
 import 'dart:indexed_db' as idb;
 
-class StoredCurrencies extends Currencies {
+class StoredCurrencies implements Currencies {
 
   final idb.Database _db;
   List<Currency> _currencies;
@@ -17,9 +17,17 @@ class StoredCurrencies extends Currencies {
     this._currencies = new List();
   }
 
+  @override
   Future<List<Currency>> getCurrencies() async {
     await _loadFromDb();
     return _currencies;
+  }
+
+  @override
+  void add(Currency currency) {
+    idb.Transaction trans = _db.transaction(DatabaseProvider.CURRENCIES_STORE, 'readwrite');
+    idb.ObjectStore store = trans.objectStore(DatabaseProvider.CURRENCIES_STORE);
+    store.put(currency.rate, currency.code).catchError((e) => _onError);
   }
 
   Future<List<Currency>> _loadFromDb() async {
@@ -36,13 +44,6 @@ class StoredCurrencies extends Currencies {
       _currencies = currencies;
       return _currencies;
     });
-  }
-
-  @override
-  void add(Currency currency) {
-    idb.Transaction trans = _db.transaction(DatabaseProvider.CURRENCIES_STORE, 'readwrite');
-    idb.ObjectStore store = trans.objectStore(DatabaseProvider.CURRENCIES_STORE);
-    store.put(currency.rate, currency.code).catchError((e) => _onError);
   }
 
   void _onError(e) {

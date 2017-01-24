@@ -32,6 +32,7 @@ Future getDb() async {
 
   StoredCurrencies storedCurrencies = new StoredCurrencies(databaseProvider.db);
 
+  /*
   storedCurrencies.add(new DefaultCurrency("DKK", 1.1));
   storedCurrencies.add(new DefaultCurrency("NKK", 0.8));
 
@@ -40,4 +41,5 @@ Future getDb() async {
         print("currency = " + c.code);
       }
   });
+  */
 }
