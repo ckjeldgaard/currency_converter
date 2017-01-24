@@ -21,4 +21,9 @@ class DefaultCurrency implements Currency {
   int compareTo(Currency other) {
     return this._code.compareTo(other.code);
   }
+
+  @override
+  void save() {
+    // TODO: implement save
+  }
 }
