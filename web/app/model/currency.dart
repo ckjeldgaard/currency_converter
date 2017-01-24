@@ -3,5 +3,4 @@ abstract class Currency {
   double get rate;
   double convertAmountTo(double amount, Currency other);
   int compareTo(Currency other);
-  void save();
 }
