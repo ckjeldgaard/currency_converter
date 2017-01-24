@@ -10,13 +10,9 @@ class DatabaseProvider {
   idb.Database _db;
   int _version = 1;
 
-  DatabaseProvider() {
-    _open();
-  }
-
   idb.Database get db => _db;
 
-  Future _open() {
+  Future open() async {
     return window.indexedDB.open(CURRENCIES_DB, version: _version,
         onUpgradeNeeded: _onUpgradeNeeded)
         .then(_onDbOpened)
@@ -30,7 +26,7 @@ class DatabaseProvider {
   void _onUpgradeNeeded(idb.VersionChangeEvent e) {
     idb.Database db = (e.target as idb.OpenDBRequest).result;
     if (!db.objectStoreNames.contains(CURRENCIES_STORE)) {
-      db.createObjectStore(CURRENCIES_STORE, keyPath: 'timeStamp');
+      db.createObjectStore(CURRENCIES_STORE);
     }
   }
 

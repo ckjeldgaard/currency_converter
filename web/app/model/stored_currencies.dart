@@ -1,7 +1,7 @@
 import '../data/database_provider.dart';
 import 'currencies.dart';
-import 'currencies_iterator.dart';
 import 'currency.dart';
+import 'dart:async';
 import 'default_currency.dart';
 import 'dart:indexed_db' as idb;
 
@@ -11,42 +11,38 @@ class StoredCurrencies extends Currencies {
   List<Currency> _currencies;
 
   StoredCurrencies(this._db) {
+    if (this._db == null) {
+      throw new ArgumentError("Database cannot be null!");
+    }
     this._currencies = new List();
-    this._currencies.add(new DefaultCurrency("USD", 1.0));
-    this._currencies.add(new DefaultCurrency("EUR", 2.0));
   }
 
-  @override
-  Iterator<Currency> get iterator => new CurrenciesIterator(_loadFromDb());
+  Future<List<Currency>> getCurrencies() async {
+    await _loadFromDb();
+    return _currencies;
+  }
 
-  List<Currency> _loadFromDb() {
+  Future<List<Currency>> _loadFromDb() async {
     List<Currency> currencies = new List();
     idb.Transaction trans = _db.transaction(DatabaseProvider.CURRENCIES_STORE, 'readwrite');
     idb.ObjectStore store = trans.objectStore(DatabaseProvider.CURRENCIES_STORE);
 
     var cursors = store.openCursor(autoAdvance: true).asBroadcastStream();
     cursors.listen((cursor) {
-      print(cursor.value);
+      currencies.add(new DefaultCurrency(cursor.key, cursor.value));
     });
 
-    /*
     return cursors.length.then((_) {
-      return milestones.length;
+      _currencies = currencies;
+      return _currencies;
     });
-
-    // Get everything in the store.
-    var request = store.openCursor(autoAdvance:true).listen((cursor) {
-      //currencies.add(cursor.value);
-      print(cursor.value);
-    }, onError: _onError);
-*/
-    return currencies;
   }
 
   @override
-  Currency add(String code, double rate) {
-    // TODO: implement add
-    return null;
+  void add(Currency currency) {
+    idb.Transaction trans = _db.transaction(DatabaseProvider.CURRENCIES_STORE, 'readwrite');
+    idb.ObjectStore store = trans.objectStore(DatabaseProvider.CURRENCIES_STORE);
+    store.put(currency.rate, currency.code).catchError((e) => _onError);
   }
 
   void _onError(e) {
