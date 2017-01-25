@@ -23,6 +23,7 @@ class FixerRepository implements Repository {
     List<Currency> loadedCurrencies = await storedCurrencies.getCurrencies().then((currencies) async {
       if (currencies.length == 0) {
         List<Currency> networkCurrencies = await _loadFromNetwork();
+        currencies = networkCurrencies;
         storedCurrencies.addAll(networkCurrencies);
       }
       return currencies;
