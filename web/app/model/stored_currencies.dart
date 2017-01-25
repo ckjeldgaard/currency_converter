@@ -46,6 +46,13 @@ class StoredCurrencies implements Currencies {
     });
   }
 
+  @override
+  void addAll(List<Currency> currencies) {
+    for (Currency c in currencies) {
+      this.add(c);
+    }
+  }
+
   void _onError(e) {
     print('An error occurred: {$e}');
   }

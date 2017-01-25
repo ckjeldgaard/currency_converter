@@ -56,7 +56,7 @@ class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrencies
         return c;
       }
     }
-    return null;
+    return loadedCurrencies[0];
   }
 
   @override
