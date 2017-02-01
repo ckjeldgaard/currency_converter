@@ -1,35 +1,19 @@
 import '../model/currency.dart';
 import '../model/default_currency.dart';
-import '../model/stored_currencies.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:html';
-import 'database_provider.dart';
 import 'repository.dart';
 
 class FixerRepository implements Repository {
 
   final String _apiUrl;
-  final DatabaseProvider _databaseProvider;
 
-  FixerRepository(this._apiUrl, this._databaseProvider);
+  FixerRepository(this._apiUrl);
 
   @override
   Future getCurrencyData() async {
-
-    await _databaseProvider.open();
-
-    StoredCurrencies storedCurrencies = new StoredCurrencies(_databaseProvider.db);
-    List<Currency> loadedCurrencies = await storedCurrencies.getCurrencies().then((currencies) async {
-      if (currencies.length == 0) {
-        List<Currency> networkCurrencies = await _loadFromNetwork();
-        currencies = networkCurrencies;
-        storedCurrencies.addAll(networkCurrencies);
-      }
-      return currencies;
-    });
-
-    return loadedCurrencies;
+    return _loadFromNetwork();
   }
 
   Future<List<Currency>> _loadFromNetwork() async {

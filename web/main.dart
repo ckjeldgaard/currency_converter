@@ -1,6 +1,5 @@
 import 'app/converter/currency_converter_presenter.dart';
 import 'app/converter/currency_converter_view.dart';
-import 'app/data/database_provider.dart';
 import 'app/data/fixer_repository.dart';
 import 'app/service_worker/service_worker_manager.dart';
 import 'app/utils/sidedrawer/overlay_invoker.dart';
@@ -19,8 +18,7 @@ class CurrencyConverterApp {
     new CurrencyConverterView(
         new CurrencyConverterPresenter(
             new FixerRepository(
-                _API_URL,
-                new DatabaseProvider()
+                _API_URL
             )
         )
     );

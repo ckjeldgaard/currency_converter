@@ -1,5 +1,5 @@
 analyzer:
-   strong-mode: true
+   strong-mode: false
 linter:
   rules:
     - avoid_empty_else
