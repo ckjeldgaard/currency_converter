@@ -12,7 +12,7 @@ class ServiceWorkerManager {
       SW.ServiceWorker sw = await SW.serviceWorkerManager.register("service-worker.dart.js");
       print("registered");
       sw.onMessage.listen((SW.MessageEvent e){
-        print(e.data);
+        print("Received data: " + e.data);
       });
     } catch(e) {
       print(e);
