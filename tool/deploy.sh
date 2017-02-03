@@ -20,7 +20,7 @@ git remote add upstream "https://$GH_TOKEN@github.com/ckjeldgaard/currency_conve
 git fetch upstream
 git reset upstream/gh-pages
 
-echo "ckjeldgaard.github.io/currency_converter/" > CNAME
+echo "ckjeldgaard.github.io" > CNAME
 
 touch .
 
