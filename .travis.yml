@@ -14,3 +14,9 @@ script:
   - pub get
   - set -e
   - pub run dart_dev test
+  - pub build --mode=release --output=build
+after_success:
+  - bash ./tool/deploy.sh
+env:
+  global:
+    secure: X/6T+c78lAWx7tmKbSyXBTp1dY+iSxaXXLmANR7z7rIROP9zuyAP4XF8meX2lCy+YomGpkut3v6mUE+dbDpBHB8frwHGXoEPYljS7nb9RvXwNcMGdghE5u9at7hqBLDkjj6SuJgEBkReRXBU4yrN7VlfHgVgVrFslKpmTbJVfswGsMouDDHUyiugY4GgvDYZCOcnbHyVIBT4Q7ZAAVjO8qF9BzjdJNVuOfzZJe84b1cnB5xlFNZfYPAN2v6rX3oK6NyWDbWodjtl2zTXWYacBAdV+WFYIRBXg0M9DOqVX9VslgD3PNjJQMph+pHxk+v56+GdCrRngN0anGU7WOxGW0Ui6b6UWG2zSxjo8hE9nis6wf2PVCaNXpFh4tBAvBSGzCC5AEoxn1CTVY7ZrneHON/yAh2yPYxNIRXUbpm/7JzXVdEURuN1yLlpQ+wD0q/48gqWHh0AXCy+UYQNYKleoYrd5Uj2MSgT0a4/H5wlJpqX3T9weyqzVu9pKsy3lDzyYdBq+9sASb4raV6uJdl9mQ9/maM0rzQdu86lOMmfd7YQfFFlXSaaLHuSbEI+1TsfTsJkfjTXMKRdnEHF5Q9UrseCMTx84z01kezz0bnyH9gvvDReHdGgKnhO7osj3EwjU6k8v71V1fcj9nafFx9tcnxr2gY5kS5GNSB0iAh4bCI=
