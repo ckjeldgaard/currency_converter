@@ -179,3 +179,11 @@ buttons {
 #content, #error {
   display: none;
 }
+
+#offline-warning {
+    background-color: #cc0000;
+    color: #ffffff;
+    text-align:center;
+    padding: 10px;
+    display:none;
+}

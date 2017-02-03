@@ -9,10 +9,13 @@ abstract class ConverterView {
   void swap();
   void setSelectedFromCurrency(Currency currency);
   void setSelectedToCurrency(Currency currency);
+  void showOfflineWarning();
+  void hideOfflineWarning();
 }
 
 abstract class ConverterUserActions {
   set view(ConverterView value);
   void loadCurrencyData();
   String convert(String amount, String codeFrom, String codeTo);
+  void checkOnline();
 }

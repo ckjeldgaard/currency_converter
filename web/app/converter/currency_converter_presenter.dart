@@ -1,5 +1,6 @@
 import '../data/repository.dart';
 import '../model/currency.dart';
+import '../utils/online_check.dart';
 import 'converter_contract.dart';
 
 class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrenciesCallback {
@@ -62,5 +63,14 @@ class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrencies
   @override
   void onFailure(Exception ex) {
     this._view.showError(ex);
+  }
+
+  @override
+  void checkOnline() {
+    if (new OnlineCheck().isOnline()) {
+      this._view.hideOfflineWarning();
+    } else {
+      this._view.showOfflineWarning();
+    }
   }
 }

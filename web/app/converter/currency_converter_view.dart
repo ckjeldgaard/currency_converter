@@ -9,6 +9,7 @@ class CurrencyConverterView implements ConverterView {
   Element _content;
   Element _error;
   Element _loading;
+  Element _offlineWarning;
 
   SelectElement _currencyFromList;
   SelectElement _currencyToList;
@@ -25,7 +26,23 @@ class CurrencyConverterView implements ConverterView {
     this._currencyToList = querySelector("#currency-to");
     this.amountFrom = querySelector("#amount-from");
     this.amountTo = querySelector("#amount-to");
+    this._offlineWarning = querySelector("#offline-warning");
+
+    this._handleOnlineCheck();
     this.loadData();
+  }
+
+  void _handleOnlineCheck() {
+    this._presenter.checkOnline();
+    new EventStreamProvider("online").forTarget(window).listen((e) {
+      this.hideOfflineWarning();
+      print("Now online. Loading data again...");
+      this.loadData();
+    });
+
+    new EventStreamProvider("offline").forTarget(window).listen((e) {
+      this.showOfflineWarning();
+    });
   }
 
   SelectElement get currencyFromList => _currencyFromList;
@@ -105,4 +122,13 @@ class CurrencyConverterView implements ConverterView {
     // TODO: implement swap
   }
 
+  @override
+  void hideOfflineWarning() {
+    this._offlineWarning.style.display = 'none';
+  }
+
+  @override
+  void showOfflineWarning() {
+    this._offlineWarning.style.display = 'block';
+  }
 }
