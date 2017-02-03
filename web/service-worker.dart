@@ -61,6 +61,10 @@ main() {
       }));
     }
   });
+
+  sw.onMessage.listen((MessageEvent e){
+    print("msg:"+e.data);
+  });
 }
 
 Future<Response> fetchAndCache(FetchEvent event, Cache cache) async {
