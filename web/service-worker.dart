@@ -18,7 +18,7 @@ main() {
         "js/mui.min.js",
         "packages/browser/dart.js",
         "main.dart.js",
-        "http://api.fixer.io/latest"
+        "https://api.fixer.io/latest"
       ]);
     } catch (e) {
       print('Error in install handler: ' + e);
