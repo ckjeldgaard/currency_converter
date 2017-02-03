@@ -13,7 +13,6 @@ before_script:
 script:
   - pub get
   - set -e
-  - pub run dart_dev test
   - pub build --mode=release --output=build
 after_success:
   - bash ./tool/deploy.sh
