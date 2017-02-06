@@ -77,7 +77,7 @@ class CurrencyConverterView implements ConverterView {
     this.amountFrom.onInput.listen((event) => _doConversion(event, amountFrom, amountTo, _currencyFromList, _currencyToList));
     this.amountTo.onInput.listen((event) => _doConversion(event, amountTo, amountFrom, _currencyToList, _currencyFromList));
 
-    this._currencyFromList.onChange.listen((event) => _doConversion(event, amountTo, amountFrom, _currencyToList, _currencyFromList));
+    this._currencyFromList.onChange.listen((event) => _doConversion(event, amountFrom, amountTo, _currencyFromList, _currencyToList));
     this._currencyToList.onChange.listen((event) => _doConversion(event, amountFrom, amountTo, _currencyFromList, _currencyToList));
 
     this._swapButton.onClick.listen((event) {
