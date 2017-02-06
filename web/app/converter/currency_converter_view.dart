@@ -17,6 +17,8 @@ class CurrencyConverterView implements ConverterView {
   InputElement amountFrom;
   InputElement amountTo;
 
+  ButtonElement _swapButton;
+
   CurrencyConverterView(this._presenter) {
     this._presenter.view = this;
     this._content = querySelector("#content");
@@ -26,6 +28,7 @@ class CurrencyConverterView implements ConverterView {
     this._currencyToList = querySelector("#currency-to");
     this.amountFrom = querySelector("#amount-from");
     this.amountTo = querySelector("#amount-to");
+    this._swapButton = querySelector("#swap-button");
     this._offlineWarning = querySelector("#offline-warning");
 
     this._handleOnlineCheck();
@@ -77,6 +80,14 @@ class CurrencyConverterView implements ConverterView {
     this._currencyFromList.onChange.listen((event) => _doConversion(event, amountTo, amountFrom, _currencyToList, _currencyFromList));
     this._currencyToList.onChange.listen((event) => _doConversion(event, amountFrom, amountTo, _currencyFromList, _currencyToList));
 
+    this._swapButton.onClick.listen((event) {
+      amountTo.value = this._presenter.swap(
+          amountFrom.value,
+          this._currencyFromList.selectedOptions[0].value,
+          this._currencyToList.selectedOptions[0].value
+      );
+    });
+
     this._presenter.loadCurrencyData();
   }
 
@@ -115,11 +126,6 @@ class CurrencyConverterView implements ConverterView {
         option.selected = true;
       }
     }
-  }
-
-  @override
-  void swap() {
-    // TODO: implement swap
   }
 
   @override

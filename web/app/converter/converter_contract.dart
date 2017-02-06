@@ -6,7 +6,6 @@ abstract class ConverterView {
   void showError(Exception e);
   void loadData();
   void setCurrencies(List<Currency> currencies);
-  void swap();
   void setSelectedFromCurrency(Currency currency);
   void setSelectedToCurrency(Currency currency);
   void showOfflineWarning();
@@ -18,4 +17,5 @@ abstract class ConverterUserActions {
   void loadCurrencyData();
   String convert(String amount, String codeFrom, String codeTo);
   void checkOnline();
+  String swap(String amount, String codeFrom, String codeTo);
 }
