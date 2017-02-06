@@ -5,12 +5,14 @@ import '../../web/app/converter/currency_converter_presenter.dart';
 import '../../web/app/data/repository.dart';
 import '../../web/app/model/currency.dart';
 import '../../web/app/model/default_currency.dart';
+import '../../web/app/utils/online_check.dart';
 import 'dart:async';
 import "package:test/test.dart";
 import 'package:mockito/mockito.dart';
 
 class ConverterViewMock extends Mock implements ConverterView {}
 class RepositoryMock extends Mock implements Repository {}
+class OnlineCheckMock extends Mock implements OnlineCheck {}
 
 void main() {
   ConverterView viewMock = new ConverterViewMock();
@@ -32,7 +34,7 @@ void main() {
 
     when(repositoryMock.getCurrencyData()).thenReturn(future);
 
-    ConverterUserActions presenter = new CurrencyConverterPresenter(repositoryMock);
+    ConverterUserActions presenter = new CurrencyConverterPresenter(repositoryMock, new OnlineCheckMock());
     presenter.view = viewMock;
     presenter.loadCurrencyData();
 
@@ -48,7 +50,7 @@ void main() {
   });
 
   test("Test presenter conversion", () {
-    CurrencyConverterPresenter presenter = new CurrencyConverterPresenter(repositoryMock);
+    CurrencyConverterPresenter presenter = new CurrencyConverterPresenter(repositoryMock, new OnlineCheckMock());
     presenter.view = viewMock;
     presenter.loadedCurrencies = currencies;
 
@@ -59,7 +61,7 @@ void main() {
   });
 
   test("Test presenter conversion without loaded currencies", () {
-    CurrencyConverterPresenter presenter = new CurrencyConverterPresenter(repositoryMock);
+    CurrencyConverterPresenter presenter = new CurrencyConverterPresenter(repositoryMock, new OnlineCheckMock());
     presenter.view = viewMock;
     expect(
         presenter.convert("100", currencyFrom.code, currencyTo.code),
@@ -77,7 +79,7 @@ void main() {
   }); */
 
   test("Test presenter conversion with empty amount", () {
-    CurrencyConverterPresenter presenter = new CurrencyConverterPresenter(repositoryMock);
+    CurrencyConverterPresenter presenter = new CurrencyConverterPresenter(repositoryMock, new OnlineCheckMock());
     presenter.view = viewMock;
     presenter.loadedCurrencies = currencies;
     expect(

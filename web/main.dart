@@ -2,6 +2,7 @@ import 'app/converter/currency_converter_presenter.dart';
 import 'app/converter/currency_converter_view.dart';
 import 'app/data/fixer_repository.dart';
 import 'app/service_worker/service_worker_manager.dart';
+import 'app/utils/online_check_impl.dart';
 import 'app/utils/sidedrawer/overlay_invoker.dart';
 import 'app/utils/sidedrawer/sidedrawer.dart';
 
@@ -19,7 +20,8 @@ class CurrencyConverterApp {
         new CurrencyConverterPresenter(
             new FixerRepository(
                 _API_URL
-            )
+            ),
+            new OnlineCheckImpl()
         )
     );
   }

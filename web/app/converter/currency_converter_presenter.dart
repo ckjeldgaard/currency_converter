@@ -9,10 +9,11 @@ class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrencies
   final String _DEFAULT_TO_CURRENCY = "USD";
 
   final Repository _repository;
+  final OnlineCheck _onlineCheck;
   ConverterView _view;
   List<Currency> loadedCurrencies = new List<Currency>();
 
-  CurrencyConverterPresenter(this._repository);
+  CurrencyConverterPresenter(this._repository, this._onlineCheck);
 
   @override
   set view(ConverterView view) {
@@ -67,7 +68,7 @@ class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrencies
 
   @override
   void checkOnline() {
-    if (new OnlineCheck().isOnline()) {
+    if (this._onlineCheck.isOnline()) {
       this._view.hideOfflineWarning();
     } else {
       this._view.showOfflineWarning();
