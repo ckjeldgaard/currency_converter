@@ -1,11 +1,12 @@
 {
   "name": "Currency converter",
-  "short_name": "Currencies",
+  "short_name": "Currency converter",
   "theme_color": "#009688",
   "background_color": "#ffffff",
   "display": "standalone",
   "Scope": "/currency_converter/",
   "start_url": "/currency_converter/",
+  "description": "A simple web app to check currency exchange rates.",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
