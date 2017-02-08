@@ -4107,7 +4107,7 @@ z=x}while(true)switch(z){case 0:x=3
 z=6
 return P.e($.$get$an().ao(0,u.a),$async$$1,y)
 case 6:t=c
-J.dV(t,["index.html","css/mui.min.css","css/styles.css","js/mui.min.js","packages/browser/dart.js","main.dart.js","https://api.fixer.io/latest"])
+J.dV(t,["index.html","css/mui.min.css","css/styles.css","js/mui.min.js","images/updown.png","packages/browser/dart.js","main.dart.js","https://api.fixer.io/latest"])
 x=1
 z=5
 break
