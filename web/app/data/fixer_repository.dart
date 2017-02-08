@@ -3,13 +3,15 @@ import '../model/default_currency.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:html';
+import 'local_storage.dart';
 import 'repository.dart';
 
 class FixerRepository implements Repository {
 
   final String _apiUrl;
+  final LocalStorage _localStorage;
 
-  FixerRepository(this._apiUrl);
+  FixerRepository(this._apiUrl, this._localStorage);
 
   @override
   Future getCurrencyData() async {
@@ -31,6 +33,10 @@ class FixerRepository implements Repository {
     Map json = JSON.decode(dataResponse);
     json["rates"].forEach((code, rate) => currencies.add(new DefaultCurrency(code, rate)));
     currencies.sort((a, b) => a.compareTo(b));
+
+    // Save API currency date in LocalStorage:
+    _localStorage.setCurrentTimestamp(DateTime.parse(json["date"]).millisecondsSinceEpoch.toString());
+
     return currencies;
   }
 }
