@@ -24,6 +24,7 @@ void main() {
   List<Currency> currencies = new List<Currency>();
   currencies.add(currencyFrom);
   currencies.add(currencyTo);
+  DateTime now = new DateTime.now();
 
   test("Test load currency data", () {
 
@@ -33,6 +34,7 @@ void main() {
     Future future = new Future.value(currencies);
 
     when(repositoryMock.getCurrencyData()).thenReturn(future);
+    when(repositoryMock.getTimestamp()).thenReturn(now.millisecondsSinceEpoch);
 
     ConverterUserActions presenter = new CurrencyConverterPresenter(repositoryMock, new OnlineCheckMock());
     presenter.view = viewMock;
@@ -46,6 +48,7 @@ void main() {
       verify(viewMock.setCurrencies(currencies));
       verify(viewMock.setSelectedFromCurrency(any));
       verify(viewMock.setSelectedToCurrency(any));
+      verify(viewMock.setLastUpdated("Currencies last updated on " + now.year.toString() + "-" + now.month.toString().padLeft(2, '0') + "-" + now.day.toString().padLeft(2, '0')));
     }));
   });
 
