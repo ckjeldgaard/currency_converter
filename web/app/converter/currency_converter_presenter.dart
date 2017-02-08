@@ -75,7 +75,6 @@ class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrencies
     }
   }
 
-
   @override
   String swap(String amount, String codeFrom, String codeTo) {
     this._view.setSelectedFromCurrency(_getCurrency(codeTo));

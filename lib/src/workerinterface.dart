@@ -1,6 +1,7 @@
 library ServiceWorkerManager.Worker;
 
 import 'dart:async';
+import 'dart:convert';
 import 'shared.dart';
 //import 'dart:html' as HTML;
 import 'dart:js';
@@ -22,6 +23,7 @@ class StateChangeEvent {
 
 class ServiceWorker {
   ServiceWorker.internal(this._internal) {
+    this.observeMessages();
     JsObject reg = _internal;
     reg.callMethod("addEventListener",["statechange",(event) {
       var nstate;
@@ -57,6 +59,20 @@ class ServiceWorker {
     reg.callMethod("addEventListener",["error",(event) {
       _errorController.add(event);
     }]);
+  }
+
+  void observeMessages() {
+    JsObject nav = new JsObject.fromBrowserObject((new JsObject.fromBrowserObject(context['window']))["navigator"]);
+    if (nav.hasProperty("serviceWorker")) {
+      JsObject serviceWorker = new JsObject.fromBrowserObject(nav["serviceWorker"]);
+      serviceWorker.callMethod("addEventListener", [
+        "message", (event) {
+          _messageController.add(event);
+        }
+      ]);
+    } else {
+      throw "Not supported";
+    }
   }
 
   /// Returns a unique identifier for a service worker registration. This must

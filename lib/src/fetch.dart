@@ -226,6 +226,10 @@ class Response implements JsProxyObject {
 
   bool get ok => _internal["ok"];
 
+  bool isOk() {
+    return _internal != null && _internal["ok"];
+  }
+
   /// Indicates whether or not the response is the result of a redirect;
   /// that is, its URL list has more than one entry.
 

@@ -1,4 +1,5 @@
 import 'package:currency_converter/serviceworker.dart';
+import 'package:currency_converter/src/update_notification.dart';
 import 'package:currency_converter/src/worker.dart';
 import 'package:currency_converter/src/cache.dart' as swCache;
 import 'dart:async';
@@ -41,7 +42,7 @@ main() {
       event.respondWith(
           swCache.caches.open(_CACHE_VERSION).then((Cache cache) async {
           Response response = await cache.match(request: event.request);
-          if (response.ok) {
+          if (response.isOk()) {
             fetchAndCache(event, cache).then((Response r) {
               sendUpdateNotification(sw, r);
             });
@@ -61,19 +62,19 @@ main() {
       }));
     }
   });
-
-  sw.onMessage.listen((MessageEvent e){
-    print("msg:"+e.data);
-  });
 }
 
 Future<Response> fetchAndCache(FetchEvent event, Cache cache) async {
-  return fetch(request: event.request.clone()).then((Response response) {
+  Response r = await fetch(request: event.request.clone()).then((Response response) async {
     if (response.status < 400) {
-      cache.put(event.request, response.clone());
+      Future f = await cache.put(event.request, response.clone());
     }
     return response;
+  }).catchError((error) {
+    print("fetchAndCache error = " + error);
+    throw error;
   });
+  return r;
 }
 
 Future<Response> getResponse(Request r) async {
@@ -86,13 +87,8 @@ Future<Response> getResponse(Request r) async {
 
 Future sendUpdateNotification(ServiceWorker sw, Response value) async {
 
-  Map updateNotification = new Map<String, int>();
-  updateNotification["timestamp"] = new DateTime.now().millisecondsSinceEpoch;
-
   List<ServiceWorkerClient> clients = await sw.clients();
-
   clients.forEach((ServiceWorkerClient client) {
-    print("Sending HELLO to client " + client.toString() + " with ID = " + client.id);
-    client.postMessage(new MessageEvent("HELLO", "", "", ""));
+    client.postMessage(new MessageEvent(new UpdateNotification(new DateTime.now().millisecondsSinceEpoch), "", "", ""));
   });
 }

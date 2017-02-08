@@ -2,7 +2,6 @@ library ServiceWorkerManager.Manager;
 
 import 'dart:async';
 import 'dart:js';
-import 'dart:html' as HTML;
 import 'workerinterface.dart';
 
 final ServiceWorkerManager serviceWorkerManager = new ServiceWorkerManager();
