@@ -10,7 +10,7 @@ import 'app/utils/sidedrawer/sidedrawer.dart';
 class CurrencyConverterApp {
 
   final String _API_URL = "https://api.fixer.io/latest";
-  final ServiceWorkerManager _serviceWorker = new ServiceWorkerManager();
+  final ServiceWorkerManager _serviceWorker = new ServiceWorkerManager(new TsLocalStorage());
 
   init() async {
     await _serviceWorker.registerServiceWorker();

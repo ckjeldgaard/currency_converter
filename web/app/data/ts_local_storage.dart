@@ -11,12 +11,12 @@ class TsLocalStorage implements LocalStorage {
   }
 
   @override
-  String getCurrentTimestamp() {
-    return _localStorage[_KEY];
+  int getCurrentTimestamp() {
+    return int.parse(_localStorage[_KEY]);
   }
 
   @override
-  void setCurrentTimestamp(String value) {
-    _localStorage[_KEY] = value;
+  void setCurrentTimestamp(int ts) {
+    _localStorage[_KEY] = ts.toString();
   }
 }

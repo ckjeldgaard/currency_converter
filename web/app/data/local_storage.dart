@@ -1,4 +1,4 @@
 abstract class LocalStorage {
-  String getCurrentTimestamp();
-  void setCurrentTimestamp(String value);
+  int getCurrentTimestamp();
+  void setCurrentTimestamp(int ts);
 }

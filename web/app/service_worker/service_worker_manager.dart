@@ -1,3 +1,4 @@
+import '../data/local_storage.dart';
 import 'dart:html';
 import 'dart:js';
 import 'package:currency_converter/serviceworkermanager.dart' as SW;
@@ -6,7 +7,10 @@ import 'dart:async';
 
 class ServiceWorkerManager {
 
-  ServiceWorkerManager();
+  static final int _THREE_DAYS_MILLS = 259200000;
+  final LocalStorage _localStorage;
+
+  ServiceWorkerManager(this._localStorage);
 
   Future registerServiceWorker() async {
     try {
@@ -17,14 +21,10 @@ class ServiceWorkerManager {
         JsObject jsData = e.data["o"];
         JsObject updateNotification = jsData["data"];
         var eventTimestamp = updateNotification["_timestamp"];
-        int currentTimestamp = new DateTime.now().millisecondsSinceEpoch;
-        int delta = (eventTimestamp - currentTimestamp);
+        int delta = (eventTimestamp - _localStorage.getCurrentTimestamp());
 
-        print("eventTimestamp   = " + eventTimestamp.toString());
-        print("currentTimestamp = " + currentTimestamp.toString());
-        print("eventTimestamp - currentTimestamp = " + delta.toString());
-
-        if (eventTimestamp - currentTimestamp > 4*60*60*1000) {
+        // Reload page if older than 3 days:
+        if (delta > _THREE_DAYS_MILLS) {
           window.location.reload();
         }
       });

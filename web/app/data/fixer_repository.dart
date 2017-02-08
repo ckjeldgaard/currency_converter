@@ -35,7 +35,7 @@ class FixerRepository implements Repository {
     currencies.sort((a, b) => a.compareTo(b));
 
     // Save API currency date in LocalStorage:
-    _localStorage.setCurrentTimestamp(DateTime.parse(json["date"]).millisecondsSinceEpoch.toString());
+    _localStorage.setCurrentTimestamp(DateTime.parse(json["date"]).millisecondsSinceEpoch);
 
     return currencies;
   }
