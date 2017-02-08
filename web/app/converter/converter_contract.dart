@@ -10,6 +10,7 @@ abstract class ConverterView {
   void setSelectedToCurrency(Currency currency);
   void showOfflineWarning();
   void hideOfflineWarning();
+  void setLastUpdated(String text);
 }
 
 abstract class ConverterUserActions {

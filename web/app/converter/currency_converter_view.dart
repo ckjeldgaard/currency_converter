@@ -10,6 +10,7 @@ class CurrencyConverterView implements ConverterView {
   Element _error;
   Element _loading;
   Element _offlineWarning;
+  Element _lastUpdated;
 
   SelectElement _currencyFromList;
   SelectElement _currencyToList;
@@ -30,6 +31,7 @@ class CurrencyConverterView implements ConverterView {
     this.amountTo = querySelector("#amount-to");
     this._swapButton = querySelector("#swap-button");
     this._offlineWarning = querySelector("#offline-warning");
+    this._lastUpdated = querySelector("#last-updated");
 
     this._handleOnlineCheck();
     this.loadData();
@@ -136,5 +138,9 @@ class CurrencyConverterView implements ConverterView {
   @override
   void showOfflineWarning() {
     this._offlineWarning.style.display = 'block';
+  }
+  @override
+  void setLastUpdated(String text) {
+    _lastUpdated.text = text;
   }
 }

@@ -8,4 +8,5 @@ abstract class LoadCurrenciesCallback {
 
 abstract class Repository {
   Future getCurrencyData();
+  int getTimestamp();
 }

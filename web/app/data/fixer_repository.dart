@@ -10,6 +10,7 @@ class FixerRepository implements Repository {
 
   final String _apiUrl;
   final LocalStorage _localStorage;
+  int _ts;
 
   FixerRepository(this._apiUrl, this._localStorage);
 
@@ -35,8 +36,14 @@ class FixerRepository implements Repository {
     currencies.sort((a, b) => a.compareTo(b));
 
     // Save API currency date in LocalStorage:
-    _localStorage.setCurrentTimestamp(DateTime.parse(json["date"]).millisecondsSinceEpoch);
+    this._ts = DateTime.parse(json["date"]).millisecondsSinceEpoch;
+    _localStorage.setCurrentTimestamp(this._ts);
 
     return currencies;
+  }
+
+  @override
+  int getTimestamp() {
+    return this._ts;
   }
 }

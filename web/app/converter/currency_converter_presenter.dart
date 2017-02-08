@@ -50,6 +50,12 @@ class CurrencyConverterPresenter implements ConverterUserActions, LoadCurrencies
     this._view.setSelectedFromCurrency(_getCurrency(_DEFAULT_FROM_CURRENCY));
     this._view.setSelectedToCurrency(_getCurrency(_DEFAULT_TO_CURRENCY));
     this._view.showContent();
+
+    if (this._repository.getTimestamp() > 0) {
+      DateTime lastUpdate = new DateTime.fromMillisecondsSinceEpoch(this._repository.getTimestamp());
+      String dateFormatted = lastUpdate.year.toString() + "-" + lastUpdate.month.toString().padLeft(2, '0') + "-" + lastUpdate.day.toString().padLeft(2, '0');
+      this._view.setLastUpdated("Currencies last updated on " + dateFormatted);
+    }
   }
 
   Currency _getCurrency(String code) {
