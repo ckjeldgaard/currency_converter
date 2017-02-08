@@ -17,6 +17,7 @@ main() {
         "css/mui.min.css",
         "css/styles.css",
         "js/mui.min.js",
+        "images/updown.png",
         "packages/browser/dart.js",
         "main.dart.js",
         "https://api.fixer.io/latest"

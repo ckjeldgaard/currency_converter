@@ -192,3 +192,13 @@ buttons {
     padding: 10px;
     display:none;
 }
+
+#swap-button {
+    background-image: url(../images/updown.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+#swap-button span {
+  display: none;
+}
