@@ -101,11 +101,16 @@ buttons {
  * Header CSS
  */
 .sidedrawer-toggle {
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
   font-size: 20px;
   line-height: 20px;
   margin-right: 10px;
+}
+
+.sidedrawer-toggle:link {
+  color: #fff;
+  text-decoration: none;
 }
 
 .sidedrawer-toggle:hover {
