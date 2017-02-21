@@ -5,12 +5,12 @@ import 'package:currency_converter/serviceworkermanager.dart' as SW;
 
 import 'dart:async';
 
-class ServiceWorkerManager {
+class ServiceWorkerAdapter {
 
   static final int _THREE_DAYS_MILLS = 259200000;
   final LocalStorage _localStorage;
 
-  ServiceWorkerManager(this._localStorage);
+  ServiceWorkerAdapter(this._localStorage);
 
   Future registerServiceWorker() async {
     try {

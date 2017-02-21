@@ -2,7 +2,7 @@ import 'app/converter/currency_converter_presenter.dart';
 import 'app/converter/currency_converter_view.dart';
 import 'app/data/fixer_repository.dart';
 import 'app/data/ts_local_storage.dart';
-import 'app/service_worker/service_worker_manager.dart';
+import 'app/service_worker/service_worker_adapter.dart';
 import 'app/utils/online_check_impl.dart';
 import 'app/utils/sidedrawer/overlay_invoker.dart';
 import 'app/utils/sidedrawer/sidedrawer.dart';
@@ -10,7 +10,7 @@ import 'app/utils/sidedrawer/sidedrawer.dart';
 class CurrencyConverterApp {
 
   final String _API_URL = "https://api.fixer.io/latest";
-  final ServiceWorkerManager _serviceWorker = new ServiceWorkerManager(new TsLocalStorage());
+  final ServiceWorkerAdapter _serviceWorker = new ServiceWorkerAdapter(new TsLocalStorage());
 
   init() async {
     await _serviceWorker.registerServiceWorker();
