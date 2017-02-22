@@ -4811,7 +4811,7 @@ z=J.q(J.ez(a),"o")
 y=J.q(z,"data")
 x=J.q(y,"_timestamp")
 w=J.bH(x,H.aG(this.a.a.a.getItem("currentTimestamp"),null,null))
-if(J.H(w,2592e5))window.location.reload()},null,null,2,0,null,3,"call"]}}],["","",,Q,{"^":"",hM:{"^":"a;a,b,c,d",
+if(J.H(w,0))window.location.reload()},null,null,2,0,null,3,"call"]}}],["","",,Q,{"^":"",hM:{"^":"a;a,b,c,d",
 e0:function(a){var z=R.hn(null)
 C.G.seN(z,P.jN(new Q.hO(this)))
 J.ew(self.mui.overlay("on",z),this.b)
