@@ -23,8 +23,8 @@ class ServiceWorkerAdapter {
         var eventTimestamp = updateNotification["_timestamp"];
         int delta = (eventTimestamp - _localStorage.getCurrentTimestamp());
 
-        // Reload page if older than 3 days:
-        if (delta > _THREE_DAYS_MILLS) {
+        // Reload page if cached version is older
+        if (delta > 0) {
           window.location.reload();
         }
       });

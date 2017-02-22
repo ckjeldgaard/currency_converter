@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:currency_converter/serviceworker.dart';
 import 'package:currency_converter/src/update_notification.dart';
 import 'package:currency_converter/src/worker.dart';
@@ -88,8 +89,12 @@ Future<Response> getResponse(Request r) async {
 
 Future sendUpdateNotification(ServiceWorker sw, Response value) async {
 
+  String response = await value.clone().text();
+  Map json = JSON.decode(response);
+  int ts = DateTime.parse(json["date"]).millisecondsSinceEpoch;
+
   List<ServiceWorkerClient> clients = await sw.clients();
   clients.forEach((ServiceWorkerClient client) {
-    client.postMessage(new MessageEvent(new UpdateNotification(new DateTime.now().millisecondsSinceEpoch), "", "", ""));
+    client.postMessage(new MessageEvent(new UpdateNotification(ts), "", "", ""));
   });
 }
